@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_393ad527d511d8037ca14793c393c7e8 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+<div style="
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    background-color: white;
+    padding: 10px 22px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    font-family: Arial;
+    text-align: center;
+">
+    <div style="
+        font-size: 20px;
+        font-weight: bold;
+        color: #222;
+    ">
+        تحليل الكثافة السكانية في مصر
+    </div>
+
+    <div style="
+        font-size: 12px;
+        color: #666;
+        margin-top: 3px;
+    ">
+        Python • GeoJSON • GIS • Interactive Web Mapping
+    </div>
+</div>
+    
+<div style="
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+
+    background-color: white;
+
+    padding: 12px 16px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+
+    font-family: Arial;
+
+    direction: rtl;
+
+    text-align: right;
+
+    font-size: 13px;
+">
+
+    <div style="
+        font-size: 15px;
+        font-weight: bold;
+        margin-bottom: 8px;
+    ">
+        الكثافة السكانية
+    </div>
+
+
+    <div style="margin: 5px;">
+        <span style="
+            display:inline-block;
+            width:12px;
+            height:12px;
+            background:#FF0055;
+            border-radius:50%;
+            margin-left:6px;
+        "></span>
+
+        أكثر من 2000 نسمة/كم²
+    </div>
+
+
+    <div style="margin: 5px;">
+        <span style="
+            display:inline-block;
+            width:12px;
+            height:12px;
+            background:#FF9900;
+            border-radius:50%;
+            margin-left:6px;
+        "></span>
+
+        1000 – 2000
+    </div>
+
+
+    <div style="margin: 5px;">
+        <span style="
+            display:inline-block;
+            width:12px;
+            height:12px;
+            background:#00AA55;
+            border-radius:50%;
+            margin-left:6px;
+        "></span>
+
+        200 – 1000
+    </div>
+
+
+    <div style="margin: 5px;">
+        <span style="
+            display:inline-block;
+            width:12px;
+            height:12px;
+            background:#0088CC;
+            border-radius:50%;
+            margin-left:6px;
+        "></span>
+
+        أقل من 200
+    </div>
+
+</div>
+    
+            <div class="folium-map" id="map_393ad527d511d8037ca14793c393c7e8" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_393ad527d511d8037ca14793c393c7e8 = L.map(
+                "map_393ad527d511d8037ca14793c393c7e8",
+                {
+                    center: [26.8206, 30.8025],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 6,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_393ad527d511d8037ca14793c393c7e8);
+
+            
+
+        
+    
+            var tile_layer_574286e9d8d48da4fff0076ee8a00c96 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_574286e9d8d48da4fff0076ee8a00c96.addTo(map_393ad527d511d8037ca14793c393c7e8);
+        
+    
+            var circle_marker_09c5663da932ed6e5ed17bf21b3d17c3 = L.circleMarker(
+                [30.0444, 31.2357],
+                {"bubblingMouseEvents": true, "color": "#FF0055", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF0055", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11, "stroke": true, "weight": 2}
+            ).addTo(map_393ad527d511d8037ca14793c393c7e8);
+        
+    
+        var popup_9b24900f842d33484191abea3c309520 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a09fec1de6351f88a7a791e58be8abe2 = $(`<div id="html_a09fec1de6351f88a7a791e58be8abe2" style="width: 100.0%; height: 100.0%;">     <div style="         font-family: Arial;         direction: rtl;         text-align: right;         width: 220px;         color: #222;     ">          <h3 style="             margin: 0 0 8px 0;             text-align: center;             color: #1f4e79;         ">             القاهرة         </h3>          <hr>          <b>👥 عدد السكان:</b>         10,280,201          <br><br>          <b>📐 المساحة:</b>         3,085.0 كم²          <br><br>          <b>📊 الكثافة السكانية:</b>          <span style="             color: #FF0055;             font-weight: bold;         ">             3,332.32         </span>          نسمة/كم²          <br><br>          <b>التصنيف:</b>         كثافة مرتفعة جدًا      </div>     </div>`)[0];
+                popup_9b24900f842d33484191abea3c309520.setContent(html_a09fec1de6351f88a7a791e58be8abe2);
+            
+        
+
+        circle_marker_09c5663da932ed6e5ed17bf21b3d17c3.bindPopup(popup_9b24900f842d33484191abea3c309520)
+        ;
+
+        
+    
+    
+            circle_marker_09c5663da932ed6e5ed17bf21b3d17c3.bindTooltip(
+                `<div>
+                     القاهرة | 3,332.32 نسمة/كم²
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_884928540d890ab3e71f834587d36344 = L.circleMarker(
+                [30.0131, 31.2089],
+                {"bubblingMouseEvents": true, "color": "#00AA55", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00AA55", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 2}
+            ).addTo(map_393ad527d511d8037ca14793c393c7e8);
+        
+    
+        var popup_8b165420a360df65b19f190e067ca300 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a9d65cdd40dd6f9756dd459f220c94eb = $(`<div id="html_a9d65cdd40dd6f9756dd459f220c94eb" style="width: 100.0%; height: 100.0%;">     <div style="         font-family: Arial;         direction: rtl;         text-align: right;         width: 220px;         color: #222;     ">          <h3 style="             margin: 0 0 8px 0;             text-align: center;             color: #1f4e79;         ">             الجيزة         </h3>          <hr>          <b>👥 عدد السكان:</b>         9,433,918          <br><br>          <b>📐 المساحة:</b>         13,184.0 كم²          <br><br>          <b>📊 الكثافة السكانية:</b>          <span style="             color: #00AA55;             font-weight: bold;         ">             715.56         </span>          نسمة/كم²          <br><br>          <b>التصنيف:</b>         كثافة متوسطة      </div>     </div>`)[0];
+                popup_8b165420a360df65b19f190e067ca300.setContent(html_a9d65cdd40dd6f9756dd459f220c94eb);
+            
+        
+
+        circle_marker_884928540d890ab3e71f834587d36344.bindPopup(popup_8b165420a360df65b19f190e067ca300)
+        ;
+
+        
+    
+    
+            circle_marker_884928540d890ab3e71f834587d36344.bindTooltip(
+                `<div>
+                     الجيزة | 715.56 نسمة/كم²
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5f4b563fba736a5e6033366ff8dca003 = L.circleMarker(
+                [31.2001, 29.9187],
+                {"bubblingMouseEvents": true, "color": "#FF0055", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF0055", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11, "stroke": true, "weight": 2}
+            ).addTo(map_393ad527d511d8037ca14793c393c7e8);
+        
+    
+        var popup_14cec73cbb49bc1a044b5fe18fc6e420 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3ebbda8376f554a232453553f69297b9 = $(`<div id="html_3ebbda8376f554a232453553f69297b9" style="width: 100.0%; height: 100.0%;">     <div style="         font-family: Arial;         direction: rtl;         text-align: right;         width: 220px;         color: #222;     ">          <h3 style="             margin: 0 0 8px 0;             text-align: center;             color: #1f4e79;         ">             الإسكندرية         </h3>          <hr>          <b>👥 عدد السكان:</b>         5,513,470          <br><br>          <b>📐 المساحة:</b>         2,300.0 كم²          <br><br>          <b>📊 الكثافة السكانية:</b>          <span style="             color: #FF0055;             font-weight: bold;         ">             2,397.16         </span>          نسمة/كم²          <br><br>          <b>التصنيف:</b>         كثافة مرتفعة جدًا      </div>     </div>`)[0];
+                popup_14cec73cbb49bc1a044b5fe18fc6e420.setContent(html_3ebbda8376f554a232453553f69297b9);
+            
+        
+
+        circle_marker_5f4b563fba736a5e6033366ff8dca003.bindPopup(popup_14cec73cbb49bc1a044b5fe18fc6e420)
+        ;
+
+        
+    
+    
+            circle_marker_5f4b563fba736a5e6033366ff8dca003.bindTooltip(
+                `<div>
+                     الإسكندرية | 2,397.16 نسمة/كم²
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_fb7cf10b5946f5e836bad3de7b7dad04 = L.circleMarker(
+                [30.5877, 31.502],
+                {"bubblingMouseEvents": true, "color": "#FF9900", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF9900", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_393ad527d511d8037ca14793c393c7e8);
+        
+    
+        var popup_46155447688b519653be6b8b22b82641 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_976df55a1cf8976073fd83b713b2fafa = $(`<div id="html_976df55a1cf8976073fd83b713b2fafa" style="width: 100.0%; height: 100.0%;">     <div style="         font-family: Arial;         direction: rtl;         text-align: right;         width: 220px;         color: #222;     ">          <h3 style="             margin: 0 0 8px 0;             text-align: center;             color: #1f4e79;         ">             الشرقية         </h3>          <hr>          <b>👥 عدد السكان:</b>         7,848,240          <br><br>          <b>📐 المساحة:</b>         4,911.0 كم²          <br><br>          <b>📊 الكثافة السكانية:</b>          <span style="             color: #FF9900;             font-weight: bold;         ">             1,598.09         </span>          نسمة/كم²          <br><br>          <b>التصنيف:</b>         كثافة مرتفعة      </div>     </div>`)[0];
+                popup_46155447688b519653be6b8b22b82641.setContent(html_976df55a1cf8976073fd83b713b2fafa);
+            
+        
+
+        circle_marker_fb7cf10b5946f5e836bad3de7b7dad04.bindPopup(popup_46155447688b519653be6b8b22b82641)
+        ;
+
+        
+    
+    
+            circle_marker_fb7cf10b5946f5e836bad3de7b7dad04.bindTooltip(
+                `<div>
+                     الشرقية | 1,598.09 نسمة/كم²
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8d6524f4bac138a6e7c7823b872fe1e1 = L.circleMarker(
+                [31.0409, 31.3785],
+                {"bubblingMouseEvents": true, "color": "#FF0055", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF0055", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11, "stroke": true, "weight": 2}
+            ).addTo(map_393ad527d511d8037ca14793c393c7e8);
+        
+    
+        var popup_c27261f98c30fb5a62288b359f2b524e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_95ce8a5c98f664fd455308ebd90977ab = $(`<div id="html_95ce8a5c98f664fd455308ebd90977ab" style="width: 100.0%; height: 100.0%;">     <div style="         font-family: Arial;         direction: rtl;         text-align: right;         width: 220px;         color: #222;     ">          <h3 style="             margin: 0 0 8px 0;             text-align: center;             color: #1f4e79;         ">             الدقهلية         </h3>          <hr>          <b>👥 عدد السكان:</b>         7,028,122          <br><br>          <b>📐 المساحة:</b>         3,500.0 كم²          <br><br>          <b>📊 الكثافة السكانية:</b>          <span style="             color: #FF0055;             font-weight: bold;         ">             2,008.03         </span>          نسمة/كم²          <br><br>          <b>التصنيف:</b>         كثافة مرتفعة جدًا      </div>     </div>`)[0];
+                popup_c27261f98c30fb5a62288b359f2b524e.setContent(html_95ce8a5c98f664fd455308ebd90977ab);
+            
+        
+
+        circle_marker_8d6524f4bac138a6e7c7823b872fe1e1.bindPopup(popup_c27261f98c30fb5a62288b359f2b524e)
+        ;
+
+        
+    
+    
+            circle_marker_8d6524f4bac138a6e7c7823b872fe1e1.bindTooltip(
+                `<div>
+                     الدقهلية | 2,008.03 نسمة/كم²
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a23456a5e62195bf2d829896c0aa1240 = L.circleMarker(
+                [30.8025, 30.9999],
+                {"bubblingMouseEvents": true, "color": "#FF0055", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF0055", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11, "stroke": true, "weight": 2}
+            ).addTo(map_393ad527d511d8037ca14793c393c7e8);
+        
+    
+        var popup_75b2f8afa3c9e6c52ef7ea31f7722375 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5cf5356a3bd7b20abc357ff0dbcf4033 = $(`<div id="html_5cf5356a3bd7b20abc357ff0dbcf4033" style="width: 100.0%; height: 100.0%;">     <div style="         font-family: Arial;         direction: rtl;         text-align: right;         width: 220px;         color: #222;     ">          <h3 style="             margin: 0 0 8px 0;             text-align: center;             color: #1f4e79;         ">             الغربية         </h3>          <hr>          <b>👥 عدد السكان:</b>         5,392,098          <br><br>          <b>📐 المساحة:</b>         1,942.0 كم²          <br><br>          <b>📊 الكثافة السكانية:</b>          <span style="             color: #FF0055;             font-weight: bold;         ">             2,776.57         </span>          نسمة/كم²          <br><br>          <b>التصنيف:</b>         كثافة مرتفعة جدًا      </div>     </div>`)[0];
+                popup_75b2f8afa3c9e6c52ef7ea31f7722375.setContent(html_5cf5356a3bd7b20abc357ff0dbcf4033);
+            
+        
+
+        circle_marker_a23456a5e62195bf2d829896c0aa1240.bindPopup(popup_75b2f8afa3c9e6c52ef7ea31f7722375)
+        ;
+
+        
+    
+    
+            circle_marker_a23456a5e62195bf2d829896c0aa1240.bindTooltip(
+                `<div>
+                     الغربية | 2,776.57 نسمة/كم²
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8572da230939420a5408ccd9964894fd = L.circleMarker(
+                [30.5503, 31.0106],
+                {"bubblingMouseEvents": true, "color": "#FF9900", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF9900", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_393ad527d511d8037ca14793c393c7e8);
+        
+    
+        var popup_8694d75324ab08b7fec86a2ec9f3e335 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_db41b3bf8ee9632d65ed35a1ef8faab8 = $(`<div id="html_db41b3bf8ee9632d65ed35a1ef8faab8" style="width: 100.0%; height: 100.0%;">     <div style="         font-family: Arial;         direction: rtl;         text-align: right;         width: 220px;         color: #222;     ">          <h3 style="             margin: 0 0 8px 0;             text-align: center;             color: #1f4e79;         ">             المنوفية         </h3>          <hr>          <b>👥 عدد السكان:</b>         4,686,835          <br><br>          <b>📐 المساحة:</b>         2,499.0 كم²          <br><br>          <b>📊 الكثافة السكانية:</b>          <span style="             color: #FF9900;             font-weight: bold;         ">             1,875.48         </span>          نسمة/كم²          <br><br>          <b>التصنيف:</b>         كثافة مرتفعة      </div>     </div>`)[0];
+                popup_8694d75324ab08b7fec86a2ec9f3e335.setContent(html_db41b3bf8ee9632d65ed35a1ef8faab8);
+            
+        
+
+        circle_marker_8572da230939420a5408ccd9964894fd.bindPopup(popup_8694d75324ab08b7fec86a2ec9f3e335)
+        ;
+
+        
+    
+    
+            circle_marker_8572da230939420a5408ccd9964894fd.bindTooltip(
+                `<div>
+                     المنوفية | 1,875.48 نسمة/كم²
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_97d9581b9cd970cbfd5eaccc016874a9 = L.circleMarker(
+                [31.0364, 31.3807],
+                {"bubblingMouseEvents": true, "color": "#FF9900", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF9900", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_393ad527d511d8037ca14793c393c7e8);
+        
+    
+        var popup_1515598aec1cb864b5387cfde69aeda2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bb53c874f07e2323fa19cab8e198e1d6 = $(`<div id="html_bb53c874f07e2323fa19cab8e198e1d6" style="width: 100.0%; height: 100.0%;">     <div style="         font-family: Arial;         direction: rtl;         text-align: right;         width: 220px;         color: #222;     ">          <h3 style="             margin: 0 0 8px 0;             text-align: center;             color: #1f4e79;         ">             كفر الشيخ         </h3>          <hr>          <b>👥 عدد السكان:</b>         3,685,324          <br><br>          <b>📐 المساحة:</b>         3,467.0 كم²          <br><br>          <b>📊 الكثافة السكانية:</b>          <span style="             color: #FF9900;             font-weight: bold;         ">             1,062.97         </span>          نسمة/كم²          <br><br>          <b>التصنيف:</b>         كثافة مرتفعة      </div>     </div>`)[0];
+                popup_1515598aec1cb864b5387cfde69aeda2.setContent(html_bb53c874f07e2323fa19cab8e198e1d6);
+            
+        
+
+        circle_marker_97d9581b9cd970cbfd5eaccc016874a9.bindPopup(popup_1515598aec1cb864b5387cfde69aeda2)
+        ;
+
+        
+    
+    
+            circle_marker_97d9581b9cd970cbfd5eaccc016874a9.bindTooltip(
+                `<div>
+                     كفر الشيخ | 1,062.97 نسمة/كم²
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_49191ac1caba7edd877e715cf21f0a5d = L.circleMarker(
+                [30.4591, 31.1786],
+                {"bubblingMouseEvents": true, "color": "#FF0055", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF0055", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11, "stroke": true, "weight": 2}
+            ).addTo(map_393ad527d511d8037ca14793c393c7e8);
+        
+    
+        var popup_837e361fe89dc8e0169238ce3766ce1b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f38765a585febfd70bcf633501957fd6 = $(`<div id="html_f38765a585febfd70bcf633501957fd6" style="width: 100.0%; height: 100.0%;">     <div style="         font-family: Arial;         direction: rtl;         text-align: right;         width: 220px;         color: #222;     ">          <h3 style="             margin: 0 0 8px 0;             text-align: center;             color: #1f4e79;         ">             القليوبية         </h3>          <hr>          <b>👥 عدد السكان:</b>         6,074,125          <br><br>          <b>📐 المساحة:</b>         1,124.0 كم²          <br><br>          <b>📊 الكثافة السكانية:</b>          <span style="             color: #FF0055;             font-weight: bold;         ">             5,404.03         </span>          نسمة/كم²          <br><br>          <b>التصنيف:</b>         كثافة مرتفعة جدًا      </div>     </div>`)[0];
+                popup_837e361fe89dc8e0169238ce3766ce1b.setContent(html_f38765a585febfd70bcf633501957fd6);
+            
+        
+
+        circle_marker_49191ac1caba7edd877e715cf21f0a5d.bindPopup(popup_837e361fe89dc8e0169238ce3766ce1b)
+        ;
+
+        
+    
+    
+            circle_marker_49191ac1caba7edd877e715cf21f0a5d.bindTooltip(
+                `<div>
+                     القليوبية | 5,404.03 نسمة/كم²
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9c7c49a8abd4892aef90557f95efb929 = L.circleMarker(
+                [28.1099, 30.7503],
+                {"bubblingMouseEvents": true, "color": "#0088CC", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088CC", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 2}
+            ).addTo(map_393ad527d511d8037ca14793c393c7e8);
+        
+    
+        var popup_2e69d7e7c830a569788da3b7df935b18 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_10e46ff02c09d54ec3d1ff4c0eea712b = $(`<div id="html_10e46ff02c09d54ec3d1ff4c0eea712b" style="width: 100.0%; height: 100.0%;">     <div style="         font-family: Arial;         direction: rtl;         text-align: right;         width: 220px;         color: #222;     ">          <h3 style="             margin: 0 0 8px 0;             text-align: center;             color: #1f4e79;         ">             المنيا         </h3>          <hr>          <b>👥 عدد السكان:</b>         6,261,540          <br><br>          <b>📐 المساحة:</b>         32,279.0 كم²          <br><br>          <b>📊 الكثافة السكانية:</b>          <span style="             color: #0088CC;             font-weight: bold;         ">             193.98         </span>          نسمة/كم²          <br><br>          <b>التصنيف:</b>         كثافة منخفضة      </div>     </div>`)[0];
+                popup_2e69d7e7c830a569788da3b7df935b18.setContent(html_10e46ff02c09d54ec3d1ff4c0eea712b);
+            
+        
+
+        circle_marker_9c7c49a8abd4892aef90557f95efb929.bindPopup(popup_2e69d7e7c830a569788da3b7df935b18)
+        ;
+
+        
+    
+    
+            circle_marker_9c7c49a8abd4892aef90557f95efb929.bindTooltip(
+                `<div>
+                     المنيا | 193.98 نسمة/كم²
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2e1478972185c361bd61e26015f49c91 = L.circleMarker(
+                [27.1783, 31.1859],
+                {"bubblingMouseEvents": true, "color": "#0088CC", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088CC", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 2}
+            ).addTo(map_393ad527d511d8037ca14793c393c7e8);
+        
+    
+        var popup_5a77584bf8876efcb0d90b22a830145c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f78da26ab86454d6f3320b54acde28b5 = $(`<div id="html_f78da26ab86454d6f3320b54acde28b5" style="width: 100.0%; height: 100.0%;">     <div style="         font-family: Arial;         direction: rtl;         text-align: right;         width: 220px;         color: #222;     ">          <h3 style="             margin: 0 0 8px 0;             text-align: center;             color: #1f4e79;         ">             أسيوط         </h3>          <hr>          <b>👥 عدد السكان:</b>         4,931,818          <br><br>          <b>📐 المساحة:</b>         25,926.0 كم²          <br><br>          <b>📊 الكثافة السكانية:</b>          <span style="             color: #0088CC;             font-weight: bold;         ">             190.23         </span>          نسمة/كم²          <br><br>          <b>التصنيف:</b>         كثافة منخفضة      </div>     </div>`)[0];
+                popup_5a77584bf8876efcb0d90b22a830145c.setContent(html_f78da26ab86454d6f3320b54acde28b5);
+            
+        
+
+        circle_marker_2e1478972185c361bd61e26015f49c91.bindPopup(popup_5a77584bf8876efcb0d90b22a830145c)
+        ;
+
+        
+    
+    
+            circle_marker_2e1478972185c361bd61e26015f49c91.bindTooltip(
+                `<div>
+                     أسيوط | 190.23 نسمة/كم²
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8a0ae8269b6d3c1819d30b1e8573cc98 = L.circleMarker(
+                [26.5569, 31.6948],
+                {"bubblingMouseEvents": true, "color": "#00AA55", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00AA55", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 2}
+            ).addTo(map_393ad527d511d8037ca14793c393c7e8);
+        
+    
+        var popup_2f564369519c4cda2a9bd9b95b7a391d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8ac1955312b60738fe963d96108bb59c = $(`<div id="html_8ac1955312b60738fe963d96108bb59c" style="width: 100.0%; height: 100.0%;">     <div style="         font-family: Arial;         direction: rtl;         text-align: right;         width: 220px;         color: #222;     ">          <h3 style="             margin: 0 0 8px 0;             text-align: center;             color: #1f4e79;         ">             سوهاج         </h3>          <hr>          <b>👥 عدد السكان:</b>         5,599,818          <br><br>          <b>📐 المساحة:</b>         11,022.0 كم²          <br><br>          <b>📊 الكثافة السكانية:</b>          <span style="             color: #00AA55;             font-weight: bold;         ">             508.06         </span>          نسمة/كم²          <br><br>          <b>التصنيف:</b>         كثافة متوسطة      </div>     </div>`)[0];
+                popup_2f564369519c4cda2a9bd9b95b7a391d.setContent(html_8ac1955312b60738fe963d96108bb59c);
+            
+        
+
+        circle_marker_8a0ae8269b6d3c1819d30b1e8573cc98.bindPopup(popup_2f564369519c4cda2a9bd9b95b7a391d)
+        ;
+
+        
+    
+    
+            circle_marker_8a0ae8269b6d3c1819d30b1e8573cc98.bindTooltip(
+                `<div>
+                     سوهاج | 508.06 نسمة/كم²
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_45e72f3cfa4608de8f9060992bd8b28d = L.circleMarker(
+                [26.1551, 32.716],
+                {"bubblingMouseEvents": true, "color": "#00AA55", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00AA55", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 2}
+            ).addTo(map_393ad527d511d8037ca14793c393c7e8);
+        
+    
+        var popup_e111afc37fbacd0f757ca65bcd75a1e2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8417292caa6e4233ac4210e6892733ef = $(`<div id="html_8417292caa6e4233ac4210e6892733ef" style="width: 100.0%; height: 100.0%;">     <div style="         font-family: Arial;         direction: rtl;         text-align: right;         width: 220px;         color: #222;     ">          <h3 style="             margin: 0 0 8px 0;             text-align: center;             color: #1f4e79;         ">             قنا         </h3>          <hr>          <b>👥 عدد السكان:</b>         3,587,630          <br><br>          <b>📐 المساحة:</b>         10,798.0 كم²          <br><br>          <b>📊 الكثافة السكانية:</b>          <span style="             color: #00AA55;             font-weight: bold;         ">             332.25         </span>          نسمة/كم²          <br><br>          <b>التصنيف:</b>         كثافة متوسطة      </div>     </div>`)[0];
+                popup_e111afc37fbacd0f757ca65bcd75a1e2.setContent(html_8417292caa6e4233ac4210e6892733ef);
+            
+        
+
+        circle_marker_45e72f3cfa4608de8f9060992bd8b28d.bindPopup(popup_e111afc37fbacd0f757ca65bcd75a1e2)
+        ;
+
+        
+    
+    
+            circle_marker_45e72f3cfa4608de8f9060992bd8b28d.bindTooltip(
+                `<div>
+                     قنا | 332.25 نسمة/كم²
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_19c8a94c09b65a417ccce41f6c17ce18 = L.circleMarker(
+                [29.0661, 31.0994],
+                {"bubblingMouseEvents": true, "color": "#00AA55", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00AA55", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 2}
+            ).addTo(map_393ad527d511d8037ca14793c393c7e8);
+        
+    
+        var popup_005aea82bb1819558d100887dfa6326d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a7c95a92e399e0f6a146f3f2d1a276cd = $(`<div id="html_a7c95a92e399e0f6a146f3f2d1a276cd" style="width: 100.0%; height: 100.0%;">     <div style="         font-family: Arial;         direction: rtl;         text-align: right;         width: 220px;         color: #222;     ">          <h3 style="             margin: 0 0 8px 0;             text-align: center;             color: #1f4e79;         ">             بني سويف         </h3>          <hr>          <b>👥 عدد السكان:</b>         3,523,270          <br><br>          <b>📐 المساحة:</b>         10,954.0 كم²          <br><br>          <b>📊 الكثافة السكانية:</b>          <span style="             color: #00AA55;             font-weight: bold;         ">             321.64         </span>          نسمة/كم²          <br><br>          <b>التصنيف:</b>         كثافة متوسطة      </div>     </div>`)[0];
+                popup_005aea82bb1819558d100887dfa6326d.setContent(html_a7c95a92e399e0f6a146f3f2d1a276cd);
+            
+        
+
+        circle_marker_19c8a94c09b65a417ccce41f6c17ce18.bindPopup(popup_005aea82bb1819558d100887dfa6326d)
+        ;
+
+        
+    
+    
+            circle_marker_19c8a94c09b65a417ccce41f6c17ce18.bindTooltip(
+                `<div>
+                     بني سويف | 321.64 نسمة/كم²
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4c587b5d70b11192068a2ce2954555a0 = L.circleMarker(
+                [29.3084, 30.8428],
+                {"bubblingMouseEvents": true, "color": "#00AA55", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00AA55", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 2}
+            ).addTo(map_393ad527d511d8037ca14793c393c7e8);
+        
+    
+        var popup_8d4fb7a72ece55c4293f649d7498389d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_84a96bb6a5df5c3212f5deae3e5c26f8 = $(`<div id="html_84a96bb6a5df5c3212f5deae3e5c26f8" style="width: 100.0%; height: 100.0%;">     <div style="         font-family: Arial;         direction: rtl;         text-align: right;         width: 220px;         color: #222;     ">          <h3 style="             margin: 0 0 8px 0;             text-align: center;             color: #1f4e79;         ">             الفيوم         </h3>          <hr>          <b>👥 عدد السكان:</b>         4,018,251          <br><br>          <b>📐 المساحة:</b>         6,068.0 كم²          <br><br>          <b>📊 الكثافة السكانية:</b>          <span style="             color: #00AA55;             font-weight: bold;         ">             662.20         </span>          نسمة/كم²          <br><br>          <b>التصنيف:</b>         كثافة متوسطة      </div>     </div>`)[0];
+                popup_8d4fb7a72ece55c4293f649d7498389d.setContent(html_84a96bb6a5df5c3212f5deae3e5c26f8);
+            
+        
+
+        circle_marker_4c587b5d70b11192068a2ce2954555a0.bindPopup(popup_8d4fb7a72ece55c4293f649d7498389d)
+        ;
+
+        
+    
+    
+            circle_marker_4c587b5d70b11192068a2ce2954555a0.bindTooltip(
+                `<div>
+                     الفيوم | 662.20 نسمة/كم²
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8b55771a8021f1a6075c8a5eb8d8e49f = L.circleMarker(
+                [25.6872, 32.6396],
+                {"bubblingMouseEvents": true, "color": "#00AA55", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00AA55", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 2}
+            ).addTo(map_393ad527d511d8037ca14793c393c7e8);
+        
+    
+        var popup_9a8687836e30fa97308df0d5174e4322 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d072b91c083772eb8915404b1e4b06c4 = $(`<div id="html_d072b91c083772eb8915404b1e4b06c4" style="width: 100.0%; height: 100.0%;">     <div style="         font-family: Arial;         direction: rtl;         text-align: right;         width: 220px;         color: #222;     ">          <h3 style="             margin: 0 0 8px 0;             text-align: center;             color: #1f4e79;         ">             الأقصر         </h3>          <hr>          <b>👥 عدد السكان:</b>         1,373,570          <br><br>          <b>📐 المساحة:</b>         2,460.0 كم²          <br><br>          <b>📊 الكثافة السكانية:</b>          <span style="             color: #00AA55;             font-weight: bold;         ">             558.36         </span>          نسمة/كم²          <br><br>          <b>التصنيف:</b>         كثافة متوسطة      </div>     </div>`)[0];
+                popup_9a8687836e30fa97308df0d5174e4322.setContent(html_d072b91c083772eb8915404b1e4b06c4);
+            
+        
+
+        circle_marker_8b55771a8021f1a6075c8a5eb8d8e49f.bindPopup(popup_9a8687836e30fa97308df0d5174e4322)
+        ;
+
+        
+    
+    
+            circle_marker_8b55771a8021f1a6075c8a5eb8d8e49f.bindTooltip(
+                `<div>
+                     الأقصر | 558.36 نسمة/كم²
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ac5c0d4ba6914c0b911b17bbf2974006 = L.circleMarker(
+                [24.0889, 32.8998],
+                {"bubblingMouseEvents": true, "color": "#0088CC", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088CC", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 2}
+            ).addTo(map_393ad527d511d8037ca14793c393c7e8);
+        
+    
+        var popup_ba70ae530713a0cafe96b0bd3c2d2859 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_100a52daf6d34a92425ee2bed388c788 = $(`<div id="html_100a52daf6d34a92425ee2bed388c788" style="width: 100.0%; height: 100.0%;">     <div style="         font-family: Arial;         direction: rtl;         text-align: right;         width: 220px;         color: #222;     ">          <h3 style="             margin: 0 0 8px 0;             text-align: center;             color: #1f4e79;         ">             أسوان         </h3>          <hr>          <b>👥 عدد السكان:</b>         1,622,345          <br><br>          <b>📐 المساحة:</b>         62,726.0 كم²          <br><br>          <b>📊 الكثافة السكانية:</b>          <span style="             color: #0088CC;             font-weight: bold;         ">             25.86         </span>          نسمة/كم²          <br><br>          <b>التصنيف:</b>         كثافة منخفضة      </div>     </div>`)[0];
+                popup_ba70ae530713a0cafe96b0bd3c2d2859.setContent(html_100a52daf6d34a92425ee2bed388c788);
+            
+        
+
+        circle_marker_ac5c0d4ba6914c0b911b17bbf2974006.bindPopup(popup_ba70ae530713a0cafe96b0bd3c2d2859)
+        ;
+
+        
+    
+    
+            circle_marker_ac5c0d4ba6914c0b911b17bbf2974006.bindTooltip(
+                `<div>
+                     أسوان | 25.86 نسمة/كم²
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f473904b48294726a63e25466da60277 = L.circleMarker(
+                [31.2565, 32.2841],
+                {"bubblingMouseEvents": true, "color": "#00AA55", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00AA55", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 2}
+            ).addTo(map_393ad527d511d8037ca14793c393c7e8);
+        
+    
+        var popup_6a48923437a2264d61d6ac1c1509a033 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1bd068c66a10b34c87c8793f35d1141f = $(`<div id="html_1bd068c66a10b34c87c8793f35d1141f" style="width: 100.0%; height: 100.0%;">     <div style="         font-family: Arial;         direction: rtl;         text-align: right;         width: 220px;         color: #222;     ">          <h3 style="             margin: 0 0 8px 0;             text-align: center;             color: #1f4e79;         ">             بورسعيد         </h3>          <hr>          <b>👥 عدد السكان:</b>         785,460          <br><br>          <b>📐 المساحة:</b>         1,351.0 كم²          <br><br>          <b>📊 الكثافة السكانية:</b>          <span style="             color: #00AA55;             font-weight: bold;         ">             581.39         </span>          نسمة/كم²          <br><br>          <b>التصنيف:</b>         كثافة متوسطة      </div>     </div>`)[0];
+                popup_6a48923437a2264d61d6ac1c1509a033.setContent(html_1bd068c66a10b34c87c8793f35d1141f);
+            
+        
+
+        circle_marker_f473904b48294726a63e25466da60277.bindPopup(popup_6a48923437a2264d61d6ac1c1509a033)
+        ;
+
+        
+    
+    
+            circle_marker_f473904b48294726a63e25466da60277.bindTooltip(
+                `<div>
+                     بورسعيد | 581.39 نسمة/كم²
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4ba98c05033da55752a18fbc00d34e3c = L.circleMarker(
+                [30.5965, 32.2715],
+                {"bubblingMouseEvents": true, "color": "#00AA55", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00AA55", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 2}
+            ).addTo(map_393ad527d511d8037ca14793c393c7e8);
+        
+    
+        var popup_964874ab32da0f6f9376d0f36e5d8bb2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_fec91a38206f1edd04a3290fb1908dfe = $(`<div id="html_fec91a38206f1edd04a3290fb1908dfe" style="width: 100.0%; height: 100.0%;">     <div style="         font-family: Arial;         direction: rtl;         text-align: right;         width: 220px;         color: #222;     ">          <h3 style="             margin: 0 0 8px 0;             text-align: center;             color: #1f4e79;         ">             الإسماعيلية         </h3>          <hr>          <b>👥 عدد السكان:</b>         1,438,221          <br><br>          <b>📐 المساحة:</b>         5,067.0 كم²          <br><br>          <b>📊 الكثافة السكانية:</b>          <span style="             color: #00AA55;             font-weight: bold;         ">             283.84         </span>          نسمة/كم²          <br><br>          <b>التصنيف:</b>         كثافة متوسطة      </div>     </div>`)[0];
+                popup_964874ab32da0f6f9376d0f36e5d8bb2.setContent(html_fec91a38206f1edd04a3290fb1908dfe);
+            
+        
+
+        circle_marker_4ba98c05033da55752a18fbc00d34e3c.bindPopup(popup_964874ab32da0f6f9376d0f36e5d8bb2)
+        ;
+
+        
+    
+    
+            circle_marker_4ba98c05033da55752a18fbc00d34e3c.bindTooltip(
+                `<div>
+                     الإسماعيلية | 283.84 نسمة/كم²
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7c917910bd71c227b233459c719f2a35 = L.circleMarker(
+                [29.9668, 32.5498],
+                {"bubblingMouseEvents": true, "color": "#0088CC", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088CC", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 2}
+            ).addTo(map_393ad527d511d8037ca14793c393c7e8);
+        
+    
+        var popup_7867dc29b8db21837f858ae2af09f138 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6b86e9e8a0e0fb0c32f3fa6bc20f4249 = $(`<div id="html_6b86e9e8a0e0fb0c32f3fa6bc20f4249" style="width: 100.0%; height: 100.0%;">     <div style="         font-family: Arial;         direction: rtl;         text-align: right;         width: 220px;         color: #222;     ">          <h3 style="             margin: 0 0 8px 0;             text-align: center;             color: #1f4e79;         ">             السويس         </h3>          <hr>          <b>👥 عدد السكان:</b>         781,210          <br><br>          <b>📐 المساحة:</b>         9,002.0 كم²          <br><br>          <b>📊 الكثافة السكانية:</b>          <span style="             color: #0088CC;             font-weight: bold;         ">             86.78         </span>          نسمة/كم²          <br><br>          <b>التصنيف:</b>         كثافة منخفضة      </div>     </div>`)[0];
+                popup_7867dc29b8db21837f858ae2af09f138.setContent(html_6b86e9e8a0e0fb0c32f3fa6bc20f4249);
+            
+        
+
+        circle_marker_7c917910bd71c227b233459c719f2a35.bindPopup(popup_7867dc29b8db21837f858ae2af09f138)
+        ;
+
+        
+    
+    
+            circle_marker_7c917910bd71c227b233459c719f2a35.bindTooltip(
+                `<div>
+                     السويس | 86.78 نسمة/كم²
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e28000175fbb1b79d9ec4b1972608404 = L.circleMarker(
+                [31.4165, 31.8133],
+                {"bubblingMouseEvents": true, "color": "#FF9900", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF9900", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_393ad527d511d8037ca14793c393c7e8);
+        
+    
+        var popup_84e2ce0aecc994b61f3a7bc58b2fdeeb = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3c8a2a283d2322225d678904dc4c0ba4 = $(`<div id="html_3c8a2a283d2322225d678904dc4c0ba4" style="width: 100.0%; height: 100.0%;">     <div style="         font-family: Arial;         direction: rtl;         text-align: right;         width: 220px;         color: #222;     ">          <h3 style="             margin: 0 0 8px 0;             text-align: center;             color: #1f4e79;         ">             دمياط         </h3>          <hr>          <b>👥 عدد السكان:</b>         1,590,450          <br><br>          <b>📐 المساحة:</b>         910.0 كم²          <br><br>          <b>📊 الكثافة السكانية:</b>          <span style="             color: #FF9900;             font-weight: bold;         ">             1,747.75         </span>          نسمة/كم²          <br><br>          <b>التصنيف:</b>         كثافة مرتفعة      </div>     </div>`)[0];
+                popup_84e2ce0aecc994b61f3a7bc58b2fdeeb.setContent(html_3c8a2a283d2322225d678904dc4c0ba4);
+            
+        
+
+        circle_marker_e28000175fbb1b79d9ec4b1972608404.bindPopup(popup_84e2ce0aecc994b61f3a7bc58b2fdeeb)
+        ;
+
+        
+    
+    
+            circle_marker_e28000175fbb1b79d9ec4b1972608404.bindTooltip(
+                `<div>
+                     دمياط | 1,747.75 نسمة/كم²
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_560f301e97e6b2eac4131f1c1a7bbc68 = L.circleMarker(
+                [31.0829, 33.8006],
+                {"bubblingMouseEvents": true, "color": "#0088CC", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088CC", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 2}
+            ).addTo(map_393ad527d511d8037ca14793c393c7e8);
+        
+    
+        var popup_925bd0f9479b5ab588167611545b71a6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0f615e132fed414aa67b9ad58d7bba48 = $(`<div id="html_0f615e132fed414aa67b9ad58d7bba48" style="width: 100.0%; height: 100.0%;">     <div style="         font-family: Arial;         direction: rtl;         text-align: right;         width: 220px;         color: #222;     ">          <h3 style="             margin: 0 0 8px 0;             text-align: center;             color: #1f4e79;         ">             شمال سيناء         </h3>          <hr>          <b>👥 عدد السكان:</b>         492,650          <br><br>          <b>📐 المساحة:</b>         28,992.0 كم²          <br><br>          <b>📊 الكثافة السكانية:</b>          <span style="             color: #0088CC;             font-weight: bold;         ">             16.99         </span>          نسمة/كم²          <br><br>          <b>التصنيف:</b>         كثافة منخفضة      </div>     </div>`)[0];
+                popup_925bd0f9479b5ab588167611545b71a6.setContent(html_0f615e132fed414aa67b9ad58d7bba48);
+            
+        
+
+        circle_marker_560f301e97e6b2eac4131f1c1a7bbc68.bindPopup(popup_925bd0f9479b5ab588167611545b71a6)
+        ;
+
+        
+    
+    
+            circle_marker_560f301e97e6b2eac4131f1c1a7bbc68.bindTooltip(
+                `<div>
+                     شمال سيناء | 16.99 نسمة/كم²
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5140f305f0466797315559e661ca4774 = L.circleMarker(
+                [28.3832, 33.9825],
+                {"bubblingMouseEvents": true, "color": "#0088CC", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088CC", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 2}
+            ).addTo(map_393ad527d511d8037ca14793c393c7e8);
+        
+    
+        var popup_2d98240de9541ef5365801d636893e5a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e1a1b17f0ad59185b63f4d1f85e1e236 = $(`<div id="html_e1a1b17f0ad59185b63f4d1f85e1e236" style="width: 100.0%; height: 100.0%;">     <div style="         font-family: Arial;         direction: rtl;         text-align: right;         width: 220px;         color: #222;     ">          <h3 style="             margin: 0 0 8px 0;             text-align: center;             color: #1f4e79;         ">             جنوب سيناء         </h3>          <hr>          <b>👥 عدد السكان:</b>         113,820          <br><br>          <b>📐 المساحة:</b>         31,272.0 كم²          <br><br>          <b>📊 الكثافة السكانية:</b>          <span style="             color: #0088CC;             font-weight: bold;         ">             3.64         </span>          نسمة/كم²          <br><br>          <b>التصنيف:</b>         كثافة منخفضة      </div>     </div>`)[0];
+                popup_2d98240de9541ef5365801d636893e5a.setContent(html_e1a1b17f0ad59185b63f4d1f85e1e236);
+            
+        
+
+        circle_marker_5140f305f0466797315559e661ca4774.bindPopup(popup_2d98240de9541ef5365801d636893e5a)
+        ;
+
+        
+    
+    
+            circle_marker_5140f305f0466797315559e661ca4774.bindTooltip(
+                `<div>
+                     جنوب سيناء | 3.64 نسمة/كم²
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f7cf60f8c2048b8ea29779b5469835f4 = L.circleMarker(
+                [27.2579, 33.8116],
+                {"bubblingMouseEvents": true, "color": "#0088CC", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088CC", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 2}
+            ).addTo(map_393ad527d511d8037ca14793c393c7e8);
+        
+    
+        var popup_b3b8e0bddb6bf24c944ed859a62b4f31 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_96454ae2ec580b9c012b6201191d14b4 = $(`<div id="html_96454ae2ec580b9c012b6201191d14b4" style="width: 100.0%; height: 100.0%;">     <div style="         font-family: Arial;         direction: rtl;         text-align: right;         width: 220px;         color: #222;     ">          <h3 style="             margin: 0 0 8px 0;             text-align: center;             color: #1f4e79;         ">             البحر الأحمر         </h3>          <hr>          <b>👥 عدد السكان:</b>         396,340          <br><br>          <b>📐 المساحة:</b>         119,000.0 كم²          <br><br>          <b>📊 الكثافة السكانية:</b>          <span style="             color: #0088CC;             font-weight: bold;         ">             3.33         </span>          نسمة/كم²          <br><br>          <b>التصنيف:</b>         كثافة منخفضة      </div>     </div>`)[0];
+                popup_b3b8e0bddb6bf24c944ed859a62b4f31.setContent(html_96454ae2ec580b9c012b6201191d14b4);
+            
+        
+
+        circle_marker_f7cf60f8c2048b8ea29779b5469835f4.bindPopup(popup_b3b8e0bddb6bf24c944ed859a62b4f31)
+        ;
+
+        
+    
+    
+            circle_marker_f7cf60f8c2048b8ea29779b5469835f4.bindTooltip(
+                `<div>
+                     البحر الأحمر | 3.33 نسمة/كم²
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_654bb2e19b8fd1a9bccc17d30b2d4e8d = L.circleMarker(
+                [25.4514, 30.5463],
+                {"bubblingMouseEvents": true, "color": "#0088CC", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088CC", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 2}
+            ).addTo(map_393ad527d511d8037ca14793c393c7e8);
+        
+    
+        var popup_bbc800da3a0786a5bdc9383af71ed497 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_aec0ab487be2174387c9b17aac0f7ac5 = $(`<div id="html_aec0ab487be2174387c9b17aac0f7ac5" style="width: 100.0%; height: 100.0%;">     <div style="         font-family: Arial;         direction: rtl;         text-align: right;         width: 220px;         color: #222;     ">          <h3 style="             margin: 0 0 8px 0;             text-align: center;             color: #1f4e79;         ">             الوادي الجديد         </h3>          <hr>          <b>👥 عدد السكان:</b>         261,880          <br><br>          <b>📐 المساحة:</b>         440,098.0 كم²          <br><br>          <b>📊 الكثافة السكانية:</b>          <span style="             color: #0088CC;             font-weight: bold;         ">             0.60         </span>          نسمة/كم²          <br><br>          <b>التصنيف:</b>         كثافة منخفضة      </div>     </div>`)[0];
+                popup_bbc800da3a0786a5bdc9383af71ed497.setContent(html_aec0ab487be2174387c9b17aac0f7ac5);
+            
+        
+
+        circle_marker_654bb2e19b8fd1a9bccc17d30b2d4e8d.bindPopup(popup_bbc800da3a0786a5bdc9383af71ed497)
+        ;
+
+        
+    
+    
+            circle_marker_654bb2e19b8fd1a9bccc17d30b2d4e8d.bindTooltip(
+                `<div>
+                     الوادي الجديد | 0.60 نسمة/كم²
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_29e7ccf13ee8484a83cdd5df004c48b7 = L.circleMarker(
+                [31.3525, 27.2453],
+                {"bubblingMouseEvents": true, "color": "#0088CC", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088CC", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 2}
+            ).addTo(map_393ad527d511d8037ca14793c393c7e8);
+        
+    
+        var popup_35292ea68c5c6fdadf9bf385f6684e5b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1039bba7dce722775c0ae49b8d9b4913 = $(`<div id="html_1039bba7dce722775c0ae49b8d9b4913" style="width: 100.0%; height: 100.0%;">     <div style="         font-family: Arial;         direction: rtl;         text-align: right;         width: 220px;         color: #222;     ">          <h3 style="             margin: 0 0 8px 0;             text-align: center;             color: #1f4e79;         ">             مطروح         </h3>          <hr>          <b>👥 عدد السكان:</b>         530,210          <br><br>          <b>📐 المساحة:</b>         166,563.0 كم²          <br><br>          <b>📊 الكثافة السكانية:</b>          <span style="             color: #0088CC;             font-weight: bold;         ">             3.18         </span>          نسمة/كم²          <br><br>          <b>التصنيف:</b>         كثافة منخفضة      </div>     </div>`)[0];
+                popup_35292ea68c5c6fdadf9bf385f6684e5b.setContent(html_1039bba7dce722775c0ae49b8d9b4913);
+            
+        
+
+        circle_marker_29e7ccf13ee8484a83cdd5df004c48b7.bindPopup(popup_35292ea68c5c6fdadf9bf385f6684e5b)
+        ;
+
+        
+    
+    
+            circle_marker_29e7ccf13ee8484a83cdd5df004c48b7.bindTooltip(
+                `<div>
+                     مطروح | 3.18 نسمة/كم²
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c448a00ff7240c2f03448ea92720198f = L.circleMarker(
+                [30.8756, 28.9431],
+                {"bubblingMouseEvents": true, "color": "#00AA55", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00AA55", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 2}
+            ).addTo(map_393ad527d511d8037ca14793c393c7e8);
+        
+    
+        var popup_daa4a44512fc6c55611557224e4d39c3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6632721c43e9d09772c1707d0fbf9dae = $(`<div id="html_6632721c43e9d09772c1707d0fbf9dae" style="width: 100.0%; height: 100.0%;">     <div style="         font-family: Arial;         direction: rtl;         text-align: right;         width: 220px;         color: #222;     ">          <h3 style="             margin: 0 0 8px 0;             text-align: center;             color: #1f4e79;         ">             البحيرة         </h3>          <hr>          <b>👥 عدد السكان:</b>         6,773,210          <br><br>          <b>📐 المساحة:</b>         9,826.0 كم²          <br><br>          <b>📊 الكثافة السكانية:</b>          <span style="             color: #00AA55;             font-weight: bold;         ">             689.32         </span>          نسمة/كم²          <br><br>          <b>التصنيف:</b>         كثافة متوسطة      </div>     </div>`)[0];
+                popup_daa4a44512fc6c55611557224e4d39c3.setContent(html_6632721c43e9d09772c1707d0fbf9dae);
+            
+        
+
+        circle_marker_c448a00ff7240c2f03448ea92720198f.bindPopup(popup_daa4a44512fc6c55611557224e4d39c3)
+        ;
+
+        
+    
+    
+            circle_marker_c448a00ff7240c2f03448ea92720198f.bindTooltip(
+                `<div>
+                     البحيرة | 689.32 نسمة/كم²
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+</script>
+</html>

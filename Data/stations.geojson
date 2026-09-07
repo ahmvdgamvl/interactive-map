@@ -1,0 +1,437 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    31.2357,
+                    30.0444
+                ]
+            },
+            "properties": {
+                "name": "القاهرة",
+                "population": 10280201,
+                "area_sqkm": 3085.0,
+                "pop_density": 3332.32
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    31.2089,
+                    30.0131
+                ]
+            },
+            "properties": {
+                "name": "الجيزة",
+                "population": 9433918,
+                "area_sqkm": 13184.0,
+                "pop_density": 715.56
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    29.9187,
+                    31.2001
+                ]
+            },
+            "properties": {
+                "name": "الإسكندرية",
+                "population": 5513470,
+                "area_sqkm": 2300.0,
+                "pop_density": 2397.16
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    31.502,
+                    30.5877
+                ]
+            },
+            "properties": {
+                "name": "الشرقية",
+                "population": 7848240,
+                "area_sqkm": 4911.0,
+                "pop_density": 1598.09
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    31.3785,
+                    31.0409
+                ]
+            },
+            "properties": {
+                "name": "الدقهلية",
+                "population": 7028122,
+                "area_sqkm": 3500.0,
+                "pop_density": 2008.03
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.9999,
+                    30.8025
+                ]
+            },
+            "properties": {
+                "name": "الغربية",
+                "population": 5392098,
+                "area_sqkm": 1942.0,
+                "pop_density": 2776.57
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    31.0106,
+                    30.5503
+                ]
+            },
+            "properties": {
+                "name": "المنوفية",
+                "population": 4686835,
+                "area_sqkm": 2499.0,
+                "pop_density": 1875.48
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    31.3807,
+                    31.0364
+                ]
+            },
+            "properties": {
+                "name": "كفر الشيخ",
+                "population": 3685324,
+                "area_sqkm": 3467.0,
+                "pop_density": 1062.97
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    31.1786,
+                    30.4591
+                ]
+            },
+            "properties": {
+                "name": "القليوبية",
+                "population": 6074125,
+                "area_sqkm": 1124.0,
+                "pop_density": 5404.03
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.7503,
+                    28.1099
+                ]
+            },
+            "properties": {
+                "name": "المنيا",
+                "population": 6261540,
+                "area_sqkm": 32279.0,
+                "pop_density": 193.98
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    31.1859,
+                    27.1783
+                ]
+            },
+            "properties": {
+                "name": "أسيوط",
+                "population": 4931818,
+                "area_sqkm": 25926.0,
+                "pop_density": 190.23
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    31.6948,
+                    26.5569
+                ]
+            },
+            "properties": {
+                "name": "سوهاج",
+                "population": 5599818,
+                "area_sqkm": 11022.0,
+                "pop_density": 508.06
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    32.716,
+                    26.1551
+                ]
+            },
+            "properties": {
+                "name": "قنا",
+                "population": 3587630,
+                "area_sqkm": 10798.0,
+                "pop_density": 332.25
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    31.0994,
+                    29.0661
+                ]
+            },
+            "properties": {
+                "name": "بني سويف",
+                "population": 3523270,
+                "area_sqkm": 10954.0,
+                "pop_density": 321.64
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.8428,
+                    29.3084
+                ]
+            },
+            "properties": {
+                "name": "الفيوم",
+                "population": 4018251,
+                "area_sqkm": 6068.0,
+                "pop_density": 662.2
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    32.6396,
+                    25.6872
+                ]
+            },
+            "properties": {
+                "name": "الأقصر",
+                "population": 1373570,
+                "area_sqkm": 2460.0,
+                "pop_density": 558.36
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    32.8998,
+                    24.0889
+                ]
+            },
+            "properties": {
+                "name": "أسوان",
+                "population": 1622345,
+                "area_sqkm": 62726.0,
+                "pop_density": 25.86
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    32.2841,
+                    31.2565
+                ]
+            },
+            "properties": {
+                "name": "بورسعيد",
+                "population": 785460,
+                "area_sqkm": 1351.0,
+                "pop_density": 581.39
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    32.2715,
+                    30.5965
+                ]
+            },
+            "properties": {
+                "name": "الإسماعيلية",
+                "population": 1438221,
+                "area_sqkm": 5067.0,
+                "pop_density": 283.84
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    32.5498,
+                    29.9668
+                ]
+            },
+            "properties": {
+                "name": "السويس",
+                "population": 781210,
+                "area_sqkm": 9002.0,
+                "pop_density": 86.78
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    31.8133,
+                    31.4165
+                ]
+            },
+            "properties": {
+                "name": "دمياط",
+                "population": 1590450,
+                "area_sqkm": 910.0,
+                "pop_density": 1747.75
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    33.8006,
+                    31.0829
+                ]
+            },
+            "properties": {
+                "name": "شمال سيناء",
+                "population": 492650,
+                "area_sqkm": 28992.0,
+                "pop_density": 16.99
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    33.9825,
+                    28.3832
+                ]
+            },
+            "properties": {
+                "name": "جنوب سيناء",
+                "population": 113820,
+                "area_sqkm": 31272.0,
+                "pop_density": 3.64
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    33.8116,
+                    27.2579
+                ]
+            },
+            "properties": {
+                "name": "البحر الأحمر",
+                "population": 396340,
+                "area_sqkm": 119000.0,
+                "pop_density": 3.33
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    30.5463,
+                    25.4514
+                ]
+            },
+            "properties": {
+                "name": "الوادي الجديد",
+                "population": 261880,
+                "area_sqkm": 440098.0,
+                "pop_density": 0.6
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    27.2453,
+                    31.3525
+                ]
+            },
+            "properties": {
+                "name": "مطروح",
+                "population": 530210,
+                "area_sqkm": 166563.0,
+                "pop_density": 3.18
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    28.9431,
+                    30.8756
+                ]
+            },
+            "properties": {
+                "name": "البحيرة",
+                "population": 6773210,
+                "area_sqkm": 9826.0,
+                "pop_density": 689.32
+            }
+        }
+    ]
+}
